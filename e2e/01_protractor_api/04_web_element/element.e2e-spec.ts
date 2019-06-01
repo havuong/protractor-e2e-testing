@@ -1,6 +1,6 @@
 import { browser, ElementFinder, element, by } from 'protractor';
 
-describe('TestSuite_01 - ', () => {
+describe('TestSuite_01 - Web Element', () => {
     beforeAll(() => {
         browser.get('/#/');
     });
@@ -44,31 +44,36 @@ describe('TestSuite_01 - ', () => {
         });
 
         // Get size (GUI: size/ font/ color/ location)
-        deleteAllContactButton.getSize().then(function (size) {
+        deleteAllContactButtonx.getSize().then(function (size) {
             console.log('Size height: ' + size.height);
             console.log('Size width: ' + size.width);
         });
 
         // Get css value (background/ color/ font)
-        deleteAllContactButton.getCssValue('background-color').then(function (color) {
+        deleteAllContactButtonx.getCssValue('background-color').then(function (color) {
             console.log('Color: ' + color);
         });
 
         // Get location
-        deleteAllContactButton.getLocation().then(function (location) {
+        deleteAllContactButtonx.getLocation().then(function (location) {
             console.log('Location x: ' + location.x);
             console.log('Location y: ' + location.y);
         });
 
-        // isDisplayed/ is Enable/ isSelected
+        // isDisplayed (all elements) - visible
+        expect(deleteAllContactButtonx.isDisplayed()).toBe(true);
+
+        // is Enable (textbox/ textarea/ button/ radio button/ checkbox)
+        expect(deleteAllContactButtonx.isEnabled()).toBe(true);
+
+        // isSelected (radio button/ checkbox)
+        expect(deleteAllContactButtonx.isSelected()).toBe(false);
+
+        // isPresent (add elements) - invisible/ visible (in DOM)
+        const messageContainer = element(by.id('cdk-describedby-message-container'));
+        expect(messageContainer.isPresent()).toBe(true);
+
+        expect(nameTextBox.isPresent()).toBe(false);
     });
-
-});
-
-it('TC_02 - ', () => {
-
-});
-
-it('TC_03 - ', () => {
 
 });
